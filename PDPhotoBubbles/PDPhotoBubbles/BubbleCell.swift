@@ -10,4 +10,13 @@ import UIKit
 
 class BubbleCell: UICollectionViewCell {
     
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    var dataSource: AnyObject!{
+        didSet{
+            
+        }
+    }
+    
+    
 }
