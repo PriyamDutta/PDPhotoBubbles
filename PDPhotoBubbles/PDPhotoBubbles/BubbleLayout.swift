@@ -77,9 +77,13 @@ class BubbleLayout: UICollectionViewLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith:indexPath as IndexPath)
             attributes.frame = attrFrame
             
+            debugPrint("Row: \(row), xOffset: \(xOffsets[row]), yOffset: \(yOffsets[row])")
+            
             cache.append(attributes)
+            contentWidth = max(contentWidth, attrFrame.maxX)
             
-            
+            xOffsets[row] = xOffsets[row] + attrWidth
+            row = row >= (layoutDataSource.1 - 1) ? 0 : 1
         }
         
     }
