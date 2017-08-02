@@ -33,7 +33,7 @@ class BubbleLayout: UICollectionViewLayout {
     }
     
     override func prepare() {
-        guard !cache.isEmpty else {
+        guard cache.isEmpty else {
             return
         }
         

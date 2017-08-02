@@ -16,33 +16,29 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Zcy-CF-KQY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BOs-64-8XE">
-                            <size key="itemSize" width="163" height="147"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
+                        <color key="backgroundColor" red="0.10655585462705587" green="0.68870422093104466" blue="0.89088811528497414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewLayout key="collectionViewLayout" id="S3y-iw-dgb" customClass="BubbleLayout" customModule="PDPhotoBubbles" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BubbleCell" id="bTX-1t-H6X" customClass="BubbleCell" customModule="PDPhotoBubbles" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="163" height="147"/>
+                                <rect key="frame" x="59" y="0.0" width="257" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="163" height="147"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="257" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-Dl-ToD">
-                                            <rect key="frame" x="0.0" y="0.0" width="163" height="147"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-Dl-ToD">
+                                            <rect key="frame" x="0.0" y="0.0" width="257" height="210"/>
                                         </imageView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="1" green="0.66551105830000001" blue="0.55717509809999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="cuA-Dl-ToD" secondAttribute="bottom" id="0nM-Kd-2HN"/>
-                                    <constraint firstItem="cuA-Dl-ToD" firstAttribute="leading" secondItem="bTX-1t-H6X" secondAttribute="leading" id="2c2-tJ-MzV"/>
-                                    <constraint firstItem="cuA-Dl-ToD" firstAttribute="top" secondItem="bTX-1t-H6X" secondAttribute="top" id="nvx-Dc-eK4"/>
-                                    <constraint firstAttribute="trailing" secondItem="cuA-Dl-ToD" secondAttribute="trailing" id="r4W-Cr-Wwa"/>
+                                    <constraint firstAttribute="trailing" secondItem="cuA-Dl-ToD" secondAttribute="trailing" id="MYF-Np-8Bu"/>
+                                    <constraint firstItem="cuA-Dl-ToD" firstAttribute="top" secondItem="bTX-1t-H6X" secondAttribute="top" id="Ms5-Ue-zJn"/>
+                                    <constraint firstAttribute="bottom" secondItem="cuA-Dl-ToD" secondAttribute="bottom" id="rBz-p7-Z04"/>
+                                    <constraint firstItem="cuA-Dl-ToD" firstAttribute="leading" secondItem="bTX-1t-H6X" secondAttribute="leading" id="zcQ-sb-rnW"/>
                                 </constraints>
+                                <size key="customSize" width="257" height="210"/>
                                 <connections>
                                     <outlet property="photoImageView" destination="cuA-Dl-ToD" id="B0B-Sj-sEh"/>
                                 </connections>

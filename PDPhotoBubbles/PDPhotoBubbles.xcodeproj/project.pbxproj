@@ -14,6 +14,7 @@
 		0844C0021F2E488A008E146E /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C0011F2E488A008E146E /* PhotoController.swift */; };
 		0844C0041F2E490A008E146E /* BubbleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C0031F2E490A008E146E /* BubbleLayout.swift */; };
 		0844C0061F2E492D008E146E /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C0051F2E492D008E146E /* BubbleCell.swift */; };
+		0844C0091F3107B0008E146E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0844C0081F3107B0008E146E /* Photos.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0844C0011F2E488A008E146E /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		0844C0031F2E490A008E146E /* BubbleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLayout.swift; sourceTree = "<group>"; };
 		0844C0051F2E492D008E146E /* BubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
+		0844C0081F3107B0008E146E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0844C0091F3107B0008E146E /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				0844BFEE1F2E47AA008E146E /* PDPhotoBubbles */,
 				0844BFED1F2E47AA008E146E /* Products */,
+				0844C0071F3107B0008E146E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				0844BFFB1F2E47AA008E146E /* Info.plist */,
 			);
 			path = PDPhotoBubbles;
+			sourceTree = "<group>";
+		};
+		0844C0071F3107B0008E146E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0844C0081F3107B0008E146E /* Photos.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
