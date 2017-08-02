@@ -11,20 +11,27 @@ import Photos
 
 enum Effect {
     case BubbleEffect
+    case SoothTranslateEffect
 }
 
 class PhotoController: UICollectionViewController {
 
     private var fetchResults = PHAsset.fetchAssets(with: .image, options: PHFetchOptions())
-    private var effectType: Effect = .BubbleEffect
+    fileprivate var configure:(Effect, isHorizontal: Bool)! = (.BubbleEffect, true)
+    fileprivate var currentOffset:CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure = (.SoothTranslateEffect, true)
         let layout = collectionViewLayout as! BubbleLayout
-        layout.isHorizontal = false
+        layout.isHorizontal = configure.1
         layout.layoutDataSource = (0, 4)
         layout.delegate = self
-        effectType = .BubbleEffect
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collectionView!.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -44,11 +51,19 @@ class PhotoController: UICollectionViewController {
     
     // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        switch effectType {
+        switch configure.0 {
         case .BubbleEffect:
             self.bubbleEffect(cell)
-        default:
-            break
+        case .SoothTranslateEffect:
+            self.soothTranslateEffect(cell)
+        }
+    }
+    
+    override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if configure.1 {
+            currentOffset = collectionView!.contentOffset.x
+        }else{
+            currentOffset = collectionView!.contentOffset.y
         }
     }
 }
@@ -68,6 +83,20 @@ extension PhotoController {
         cell.transform = CGAffineTransform(scaleX: 0.02, y: 0.02)
         UIView.animate(withDuration: 0.35, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             cell.alpha = 1.0
+            cell.transform = .identity
+        }) { (done) in
+        }
+    }
+    
+    fileprivate func soothTranslateEffect(_ cell: UICollectionViewCell) {
+        var translation:CGFloat = 100
+        if configure.1 {
+            translation = currentOffset <= collectionView!.contentOffset.x ? 100 : -100
+        }else{
+            translation = currentOffset <= collectionView!.contentOffset.y ? 100 : -100
+        }
+        cell.transform = configure.1 ? CGAffineTransform(translationX: translation, y: 0.0) : CGAffineTransform(translationX: 0.0, y: translation)
+        UIView.animate(withDuration: 0.45, delay: 0.0, options: .curveEaseInOut, animations: {
             cell.transform = .identity
         }) { (done) in
         }
