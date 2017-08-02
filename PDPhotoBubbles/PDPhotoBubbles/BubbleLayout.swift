@@ -77,19 +77,72 @@ class BubbleLayout: UICollectionViewLayout {
             let attributes = UICollectionViewLayoutAttributes(forCellWith:indexPath as IndexPath)
             attributes.frame = attrFrame
             
-            debugPrint("Row: \(row), xOffset: \(xOffsets[row]), yOffset: \(yOffsets[row])")
+//            debugPrint("Row: \(row), xOffset: \(xOffsets[row]), yOffset: \(yOffsets[row])")
             
             cache.append(attributes)
             contentWidth = max(contentWidth, attrFrame.maxX)
             
             xOffsets[row] = xOffsets[row] + attrWidth
-            row = row >= (layoutDataSource.1 - 1) ? 0 : 1
+            row = row >= (layoutDataSource.1 - 1) ? 0 : (row + 1)
         }
         
     }
     
     private func prepareVerticalLayout() {
         
+        let rowHeight = layoutLength / CGFloat(layoutDataSource.rowsOrColumns)
+        
+        var xOffsets: [CGFloat] = []
+        var yOffsets = [CGFloat](repeating: 0, count: layoutDataSource.rowsOrColumns)
+        
+        for column in 0..<layoutDataSource.rowsOrColumns {
+            xOffsets.append(CGFloat(column) * rowHeight)
+        }
+        
+        var column = 0
+        for item in 0..<collectionView!.numberOfItems(inSection: layoutDataSource.0) {
+            
+            let indexPath = NSIndexPath(item: item, section: layoutDataSource.0)
+            let attrHeight = delegate.collectionView(collectionView: collectionView!, sizeForItemAt: indexPath).height
+            
+            let attrFrame = CGRect(x: xOffsets[column], y: yOffsets[column], width: attrHeight - padding, height: attrHeight - padding)
+            
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath as IndexPath)
+            attributes.frame = attrFrame
+            
+//            debugPrint("Column: \(column), xOffset: \(xOffsets[column]), yOffset: \(yOffsets[column])")
+            
+            cache.append(attributes)
+            contentHeight = max(contentHeight, attrFrame.maxY)
+            
+            yOffsets[column] = yOffsets[column] + attrHeight
+            column = column >= (layoutDataSource.1 - 1) ? 0 : (column + 1)
+        }
+        
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

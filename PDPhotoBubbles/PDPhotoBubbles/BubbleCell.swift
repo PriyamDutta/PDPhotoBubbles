@@ -32,9 +32,21 @@ class BubbleCell: UICollectionViewCell {
                     
                     DispatchQueue.main.async {
                         self.photoImageView.image = image
+                        self.transformUI()
                     }
             })
         }
+    }
+    
+    private func transformUI() {
+        let scaleAnimate = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimate.fromValue = 1.0
+        scaleAnimate.toValue = 1.5
+        scaleAnimate.duration = 15.0
+        scaleAnimate.beginTime = CFTimeInterval(arc4random_uniform(3))
+        scaleAnimate.repeatCount = Float(Int.max)
+        scaleAnimate.autoreverses = true
+        self.photoImageView.layer.add(scaleAnimate, forKey: "animateScale")
     }
     
     
