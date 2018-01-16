@@ -13,10 +13,10 @@
         <scene sceneID="KJZ-Fd-FWW">
             <objects>
                 <collectionViewController storyboardIdentifier="PhotoController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Wj-Ot-nU7" customClass="PhotoController" customModule="PDPhotoBubbles" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Zcy-CF-KQY">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Zcy-CF-KQY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.10655585462705587" green="0.68870422093104466" blue="0.89088811528497414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.27276950170000003" green="0.84688683710000001" blue="0.51017625909999997" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewLayout key="collectionViewLayout" id="S3y-iw-dgb" customClass="BubbleLayout" customModule="PDPhotoBubbles" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BubbleCell" id="bTX-1t-H6X" customClass="BubbleCell" customModule="PDPhotoBubbles" customModuleProvider="target">
@@ -52,7 +52,58 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06A-7i-D53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="158.77061469265368"/>
+            <point key="canvasLocation" x="-47" y="159"/>
+        </scene>
+        <!--Photo Detail Controller-->
+        <scene sceneID="WIB-ZS-lLr">
+            <objects>
+                <viewController storyboardIdentifier="PhotoDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3gi-Mk-thj" customClass="PhotoDetailController" customModule="PDPhotoBubbles" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GLX-y8-HJ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="g35-DI-MB0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QFM-IK-FcX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmV-Oo-nmO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sCT-AN-8KQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dxo-8p-1qV">
+                                            <rect key="frame" x="44" y="171" width="286" height="325"/>
+                                            <color key="backgroundColor" red="1" green="0.66551105830000001" blue="0.55717509809999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="325" id="fLX-6P-6IG"/>
+                                                <constraint firstAttribute="width" constant="286" id="tPr-rK-FxE"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dxo-8p-1qV" firstAttribute="centerY" secondItem="sCT-AN-8KQ" secondAttribute="centerY" id="ueG-jh-QcS"/>
+                                        <constraint firstItem="dxo-8p-1qV" firstAttribute="centerX" secondItem="sCT-AN-8KQ" secondAttribute="centerX" id="zee-or-rlQ"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="prominent"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g35-DI-MB0" firstAttribute="top" secondItem="SmV-Oo-nmO" secondAttribute="bottom" id="HwK-ok-3Up"/>
+                            <constraint firstAttribute="trailing" secondItem="SmV-Oo-nmO" secondAttribute="trailing" id="gSy-eb-qDe"/>
+                            <constraint firstItem="SmV-Oo-nmO" firstAttribute="top" secondItem="QFM-IK-FcX" secondAttribute="top" id="hpE-nM-liK"/>
+                            <constraint firstItem="SmV-Oo-nmO" firstAttribute="leading" secondItem="QFM-IK-FcX" secondAttribute="leading" id="y5k-Hn-Yt6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailImageView" destination="dxo-8p-1qV" id="mCL-Yn-CIf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NyM-bg-71h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="158.77061469265368"/>
         </scene>
     </scenes>
 </document>

@@ -15,6 +15,7 @@
 		0844C0041F2E490A008E146E /* BubbleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C0031F2E490A008E146E /* BubbleLayout.swift */; };
 		0844C0061F2E492D008E146E /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C0051F2E492D008E146E /* BubbleCell.swift */; };
 		0844C0091F3107B0008E146E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0844C0081F3107B0008E146E /* Photos.framework */; };
+		0844C00B1F357E37008E146E /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0844C00A1F357E37008E146E /* PhotoDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0844C0031F2E490A008E146E /* BubbleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLayout.swift; sourceTree = "<group>"; };
 		0844C0051F2E492D008E146E /* BubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleCell.swift; sourceTree = "<group>"; };
 		0844C0081F3107B0008E146E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		0844C00A1F357E37008E146E /* PhotoDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				0844C0011F2E488A008E146E /* PhotoController.swift */,
 				0844C0031F2E490A008E146E /* BubbleLayout.swift */,
 				0844C0051F2E492D008E146E /* BubbleCell.swift */,
+				0844C00A1F357E37008E146E /* PhotoDetailController.swift */,
 				0844BFF31F2E47AA008E146E /* Main.storyboard */,
 				0844BFF61F2E47AA008E146E /* Assets.xcassets */,
 				0844BFF81F2E47AA008E146E /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 			files = (
 				0844C0021F2E488A008E146E /* PhotoController.swift in Sources */,
 				0844C0041F2E490A008E146E /* BubbleLayout.swift in Sources */,
+				0844C00B1F357E37008E146E /* PhotoDetailController.swift in Sources */,
 				0844BFF01F2E47AA008E146E /* AppDelegate.swift in Sources */,
 				0844C0061F2E492D008E146E /* BubbleCell.swift in Sources */,
 			);
