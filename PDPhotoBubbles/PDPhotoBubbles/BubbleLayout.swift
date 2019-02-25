@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol BubbleLayoutDelegate {
+protocol BubbleLayoutDelegate: class {
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: NSIndexPath) -> CGSize
 }
 
-class BubbleLayout: UICollectionViewLayout {
+final class BubbleLayout: UICollectionViewLayout {
     
-    var delegate: BubbleLayoutDelegate!
+    weak var delegate: BubbleLayoutDelegate?
     var layoutDataSource:(section: Int, rowsOrColumns: Int)!
     var isHorizontal = true
     
@@ -33,20 +33,16 @@ class BubbleLayout: UICollectionViewLayout {
     }
     
     override func prepare() {
-        guard cache.isEmpty else {
-            return
-        }
+        guard cache.isEmpty else { return }
+        guard layoutDataSource.rowsOrColumns != 0 else { return }
         
-        guard layoutDataSource.rowsOrColumns != 0 else {
-            return
-        }
-        
-        layoutDataSource.0 = 0
+        layoutDataSource.section = 0
         isHorizontal ? prepareHorizontalLayout() : prepareVerticalLayout()
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes: [UICollectionViewLayoutAttributes] = []
+        layoutAttributes.reserveCapacity(cache.count)
         for attributes in cache {
             if attributes.frame.intersects(rect) {
                 layoutAttributes.append(attributes)
@@ -67,60 +63,46 @@ class BubbleLayout: UICollectionViewLayout {
         }
         
         var row = 0
-        for item in 0..<collectionView!.numberOfItems(inSection: layoutDataSource.0) {
+        for item in 0..<collectionView!.numberOfItems(inSection: layoutDataSource.section) {
             
-            let indexPath = NSIndexPath(item: item, section: layoutDataSource.0)
-            let attrWidth = delegate.collectionView(collectionView: collectionView!, sizeForItemAt: indexPath).width
-            
-            let attrFrame = CGRect(x: xOffsets[row], y: yOffsets[row], width: attrWidth - padding, height: attrWidth - padding)
-            
-            let attributes = UICollectionViewLayoutAttributes(forCellWith:indexPath as IndexPath)
-            attributes.frame = attrFrame
-            
-//            debugPrint("Row: \(row), xOffset: \(xOffsets[row]), yOffset: \(yOffsets[row])")
-            
-            cache.append(attributes)
-            contentWidth = max(contentWidth, attrFrame.maxX)
-            
-            xOffsets[row] = xOffsets[row] + attrWidth
-            row = row >= (layoutDataSource.1 - 1) ? 0 : (row + 1)
+            let indexPath = NSIndexPath(item: item, section: layoutDataSource.section)
+            if let attrWidth = delegate?.collectionView(collectionView: collectionView!, sizeForItemAt: indexPath).width {
+                let attrFrame = CGRect(x: xOffsets[row], y: yOffsets[row], width: attrWidth - padding, height: attrWidth - padding)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith:indexPath as IndexPath)
+                attributes.frame = attrFrame
+                cache.append(attributes)
+                contentWidth = max(contentWidth, attrFrame.maxX)
+                xOffsets[row] = xOffsets[row] + attrWidth
+                row = row >= (layoutDataSource.rowsOrColumns - 1) ? 0 : (row + 1)
+//                debugPrint("Row: \(row), xOffset: \(xOffsets[row]), yOffset: \(yOffsets[row])")
+            }
         }
-        
     }
     
     private func prepareVerticalLayout() {
         
         let rowHeight = layoutLength / CGFloat(layoutDataSource.rowsOrColumns)
-        
         var xOffsets: [CGFloat] = []
         var yOffsets = [CGFloat](repeating: 0, count: layoutDataSource.rowsOrColumns)
-        
         for column in 0..<layoutDataSource.rowsOrColumns {
             xOffsets.append(CGFloat(column) * rowHeight)
         }
-        
         var column = 0
-        for item in 0..<collectionView!.numberOfItems(inSection: layoutDataSource.0) {
+        for item in 0..<collectionView!.numberOfItems(inSection: layoutDataSource.section) {
             
-            let indexPath = NSIndexPath(item: item, section: layoutDataSource.0)
-            let attrHeight = delegate.collectionView(collectionView: collectionView!, sizeForItemAt: indexPath).height
-            
-            let attrFrame = CGRect(x: xOffsets[column], y: yOffsets[column], width: attrHeight - padding, height: attrHeight - padding)
-            
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath as IndexPath)
-            attributes.frame = attrFrame
-            
-//            debugPrint("Column: \(column), xOffset: \(xOffsets[column]), yOffset: \(yOffsets[column])")
-            
-            cache.append(attributes)
-            contentHeight = max(contentHeight, attrFrame.maxY)
-            
-            yOffsets[column] = yOffsets[column] + attrHeight
-            column = column >= (layoutDataSource.1 - 1) ? 0 : (column + 1)
+            let indexPath = NSIndexPath(item: item, section: layoutDataSource.section)
+            if let attrHeight = delegate?.collectionView(collectionView: collectionView!, sizeForItemAt: indexPath).height {
+                let attrFrame = CGRect(x: xOffsets[column], y: yOffsets[column], width: attrHeight - padding, height: attrHeight - padding)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath as IndexPath)
+                attributes.frame = attrFrame
+//                debugPrint("Column: \(column), xOffset: \(xOffsets[column]), yOffset: \(yOffsets[column])")
+                cache.append(attributes)
+                contentHeight = max(contentHeight, attrFrame.maxY)
+                yOffsets[column] = yOffsets[column] + attrHeight
+                column = column >= (layoutDataSource.rowsOrColumns - 1) ? 0 : (column + 1)
+            }
         }
-        
     }
-    
 }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotoDetailController: UIViewController {
+final class PhotoDetailController: UIViewController {
 
     @IBOutlet weak var detailImageView: UIImageView!
     var phasset:PHAsset!
@@ -90,8 +90,8 @@ class PhotoDetailController: UIViewController {
         animateCorner.fromValue = self.detailImageView.frame.width / 2.0
         animateCorner.toValue = 0
         animateCorner.duration = 0.35
-        animateCorner.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        animateCorner.fillMode = kCAFillModeBackwards
+        animateCorner.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        animateCorner.fillMode = .backwards
         self.detailImageView.layer.add(animateCorner, forKey: "cornerAnimate")
         
     }
@@ -100,5 +100,4 @@ class PhotoDetailController: UIViewController {
         self.dismiss(animated: true) {
         }
     }
-
 }

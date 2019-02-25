@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class BubbleCell: UICollectionViewCell {
+final class BubbleCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -19,7 +19,7 @@ class BubbleCell: UICollectionViewCell {
 //        self.addMotionEffect(UIMotionEffect.twoAxesTilt(strength: 0.5))
     }
     
-    var dataSource: AnyObject!{
+    var dataSource: AnyObject! {
         didSet{
             let imageOptions = PHImageRequestOptions()
             imageOptions.version = .current
@@ -30,7 +30,6 @@ class BubbleCell: UICollectionViewCell {
                 contentMode: .aspectFill,
                 options: imageOptions,
                 resultHandler: { image, _ in
-                    
                     DispatchQueue.main.async {
                         self.photoImageView.image = image
                         self.transformUI()
@@ -52,9 +51,10 @@ class BubbleCell: UICollectionViewCell {
 }
 
 extension UIMotionEffect {
+    
     class func twoAxesTilt(strength: Float) -> UIMotionEffect {
         // get relative change with `strength` passed to the main method.
-        func relativeValue(isMax: Bool, type: UIInterpolatingMotionEffectType) -> NSValue {
+        func relativeValue(isMax: Bool, type: UIInterpolatingMotionEffect.EffectType) -> NSValue {
             var transform = CATransform3DIdentity
             transform.m34 = (1.0 * CGFloat(strength)) / 2000.0
             
@@ -62,17 +62,17 @@ extension UIMotionEffect {
             if type == .tiltAlongVerticalAxis {
                 // transform vertically
                 axisValue = isMax ? -1.0 : 1.0
-                transform = CATransform3DRotate(transform, axisValue * CGFloat(Double.pi/4), 1, 0, 0)
+                transform = CATransform3DRotate(transform, axisValue * CGFloat(Double.pi / 4), 1, 0, 0)
             } else {
                 // transform horizontally
                 axisValue = isMax ? 1.0 : -1.0
-                transform = CATransform3DRotate(transform, axisValue * CGFloat(Double.pi/4), 0, 1, 0)
+                transform = CATransform3DRotate(transform, axisValue * CGFloat(Double.pi / 4), 0, 1, 0)
             }
             return NSValue(caTransform3D: transform)
         }
         
         // create motion for specified `type`.
-        func motion(type: UIInterpolatingMotionEffectType) -> UIInterpolatingMotionEffect {
+        func motion(type: UIInterpolatingMotionEffect.EffectType) -> UIInterpolatingMotionEffect {
             let motion = UIInterpolatingMotionEffect(keyPath: "layer.transform", type: type)
             motion.minimumRelativeValue = relativeValue(isMax: false, type: type)
             motion.maximumRelativeValue = relativeValue(isMax: true, type: type)
@@ -90,9 +90,10 @@ extension UIMotionEffect {
 }
 
 extension UIMotionEffect {
+    
     class func twoAxesShift(strength: Float) -> UIMotionEffect {
         // internal method that creates motion effect
-        func motion(type: UIInterpolatingMotionEffectType) -> UIInterpolatingMotionEffect {
+        func motion(type: UIInterpolatingMotionEffect.EffectType) -> UIInterpolatingMotionEffect {
             let keyPath = type == .tiltAlongHorizontalAxis ? "center.x" : "center.y"
             let motion = UIInterpolatingMotionEffect(keyPath: keyPath, type: type)
             motion.minimumRelativeValue = -strength
